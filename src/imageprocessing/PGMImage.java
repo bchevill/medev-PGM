@@ -4,7 +4,7 @@
  */
 package imageprocessing;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,20 +17,19 @@ public class PGMImage {
     
     private int l;
     private int h;
-    private int[] pixelArray;
+    private ArrayList<Integer> pixelArray;
 
     public PGMImage(int largeur, int hauteur){
         l=largeur;
         h=hauteur;
-        pixelArray = new int[l*h];
-        for(int i=0;i<l*h;i++) pixelArray[i]=200;
+        for(int i=0;i<l*h;i++) pixelArray.add(200);
         
     }
     
    public PGMImage(PGMImage I){
         l = I.getL();
         h = I.getH();
-        pixelArray = I.getPixelArray().clone();
+        pixelArray = I.getPixelArray();
     } 
        
     
@@ -51,42 +50,45 @@ public class PGMImage {
     /**
      * @return the pixelArray
      */
-    public int[] getPixelArray() {
+    public ArrayList<Integer> getPixelArray() {
         return pixelArray;
     }
     
-    public void fillPixelArray(int [] a) {
-        if(a.length != pixelArray.length) {
+    public void fillPixelArray(ArrayList a) {
+        if(a.size() != pixelArray.size()) {
             System.out.println("Size error");}
         else {
-            for(int i=0; i<a.length; i++){ 
-                pixelArray[i]=a[i];
+            for(int i=0; i<a.size(); i++){ 
+                pixelArray.set(i,(int)a.get(i));
             }       
         }
     }
     
     public void fillImage() {
      
-        for(int i=0; i<pixelArray.length; i++){
+        for(int i=0; i<pixelArray.size(); i++){
             
-            pixelArray[i] = Math.round( (float) i*greyScale/pixelArray.length );
+            pixelArray.set(i, Math.round( (float) i*greyScale/pixelArray.size() ));
         }
         
     }
     
     public PGMImage diff(PGMImage I){
-       
+    
+    int diffVal = 0;
+        
     if(!(l==I.getL() && h==I.getH())) {
         System.out.println("Les images n'ont pas la même taille");
         return I;
     }
         
-    int[] dataArray = I.getPixelArray();
-    int[] resArray = new int[l*h];
+    ArrayList<Integer> dataArray = I.getPixelArray();
+    ArrayList<Integer> resArray = new ArrayList<>();
     
-    for(int i=0; i<pixelArray.length; i++){
-            
-       resArray[i] = pixelArray[i]-dataArray[i]>0?pixelArray[i]-dataArray[i]:0;
+    for(int i=0; i<pixelArray.size(); i++){
+       
+       diffVal = pixelArray.get(i)-dataArray.get(i)>0?(pixelArray.get(i)-dataArray.get(i)):0;
+       resArray.set(i, diffVal);
     }
     
     PGMImage delta = new PGMImage(l,h);
@@ -96,10 +98,12 @@ public class PGMImage {
     }
     
     public PGMImage seuil(int s){
-       int[] resArray = new int[l*h];
+       ArrayList<Integer> resArray = new ArrayList<>();
+       int diffVal = 0;
        
-       for(int i=0; i<pixelArray.length; i++){
-            resArray[i] = pixelArray[i]>s?255:0;
+       for(int i=0; i<pixelArray.size(); i++){
+           diffVal =  pixelArray.get(i)>s?255:0;
+           resArray.set(i,diffVal);
        } 
        
     PGMImage seuild = new PGMImage(l,h);
@@ -115,27 +119,27 @@ public class PGMImage {
     public PGMImage generateHistogram() {
         
        
-       int[] freqArrays = new int[256];
+       ArrayList<Integer> freqArrays = new ArrayList<>();
        int maxFreq = 0;
        
-       for(int i=0; i<pixelArray.length; i++){
-           freqArrays[pixelArray[i]]++;
-           if(freqArrays[pixelArray[i]]>maxFreq){
-               maxFreq=freqArrays[pixelArray[i]];
+       for(int i=0; i<pixelArray.size(); i++){
+           freqArrays.set(pixelArray.get(i),freqArrays.get(pixelArray.get(i)+1));
+           if(freqArrays.get(pixelArray.get(i))>maxFreq){
+               maxFreq=freqArrays.get(pixelArray.get(i));
            }
        } 
        
        
-       int[] histPixelArray = new int[256*maxFreq];
+       ArrayList<Integer> histPixelArray = new ArrayList<>();
        
        for(int i=0; i<256; i++){
            for(int j=0; j<maxFreq; j++){
              
                
-            if(j<freqArrays[i])
-            {histPixelArray[maxFreq*i+j]=0;}
+            if(j<freqArrays.get(i))
+            {histPixelArray.set(maxFreq*i+j,0);}
             else
-            {histPixelArray[maxFreq*i+j]=255;}
+            {histPixelArray.set(maxFreq*i+j,255);}
             
            }
        }
@@ -146,8 +150,46 @@ public class PGMImage {
        return histImage;        
     }
     
-    public void resize(int largeur, int hauteur){
+    public void resizeH(int hauteur, PGMImage I)
+    { 
+        int deltaH = h-hauteur; 
         
+        if(deltaH==0){return;}
+        if(deltaH>0){ //réduction
+        int[] delIndicesArray = new int[deltaH];    
+            
+        for(int i=0;i<deltaH;i++){
+            delIndicesArray[i]=Math.round((float) i*h/deltaH);
+        }    
         
+        for(int i=0;i<h;i++){
+            
+            
+            
+        }
+            
+            
+        }
+        else{
+            
+            
+            
+            
+        }
+    }
+    
+    public void resizeL(int largeur, PGMImage I)
+    {
+        int deltaL = l-largeur;
+    }       
+            
+    public PGMImage resize(int largeur, int hauteur){
+    
+    PGMImage I = new PGMImage(largeur, hauteur);
+        
+    resizeH(hauteur,I);
+    resizeL(largeur,I);    
+    
+    return I;
     }
 }
