@@ -23,7 +23,7 @@ public class PGMImage {
         l=largeur;
         h=hauteur;
         pixelArray = new int[l*h];
-        for(int i=0;i<l*h;i++) pixelArray[i]=0;
+        for(int i=0;i<l*h;i++) pixelArray[i]=200;
         
     }
     
@@ -115,28 +115,32 @@ public class PGMImage {
     public PGMImage generateHistogram() {
         
        
-       int[] freqArrays = new int[255];
+       int[] freqArrays = new int[256];
        int maxFreq = 0;
        
        for(int i=0; i<pixelArray.length; i++){
            freqArrays[pixelArray[i]]++;
-           if(freqArrays[pixelArray[i]]>maxFreq)maxFreq=freqArrays[pixelArray[i]];
+           if(freqArrays[pixelArray[i]]>maxFreq){
+               maxFreq=freqArrays[pixelArray[i]];
+           }
        } 
-              
-       int[] histPixelArray = new int[255*maxFreq];
        
-       for(int i=0; i<255; i++){
+       
+       int[] histPixelArray = new int[256*maxFreq];
+       
+       for(int i=0; i<256; i++){
            for(int j=0; j<maxFreq; j++){
+             
                
             if(j<freqArrays[i])
-            {histPixelArray[255*i+j]=255;}
+            {histPixelArray[maxFreq*i+j]=0;}
             else
-            {histPixelArray[255*i+j]=0;}
-               
+            {histPixelArray[maxFreq*i+j]=255;}
+            
            }
        }
         
-       PGMImage histImage = new PGMImage(255,maxFreq); 
+       PGMImage histImage = new PGMImage(maxFreq,256); 
        histImage.fillPixelArray(histPixelArray);
        
        return histImage;        
