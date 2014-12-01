@@ -20,8 +20,8 @@ public class PGMImage {
     public PGMImage(int largeur, int hauteur){
         l=largeur;
         h=hauteur;
-    
-    for(int i=0;i<l*h;i++) pixelArray[i]=0;
+        pixelArray = new int[l*h];
+        for(int i=0;i<l*h;i++) pixelArray[i]=0;
         
     }
     
@@ -107,5 +107,9 @@ public class PGMImage {
     
     public PGMImage seuil(){
        return this.seuil(255);
+    }
+    
+    public void resize(int largeur, int hauteur){
+        
     }
 }
