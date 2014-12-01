@@ -22,7 +22,8 @@ public class PGMImage {
     public PGMImage(int largeur, int hauteur){
         l=largeur;
         h=hauteur;
-        for(int i=0;i<l*h;i++) pixelArray.add(200);
+        pixelArray = new ArrayList<>();
+        for(int i=0;i<l*h;i++) {pixelArray.add(200);}
         
     }
     

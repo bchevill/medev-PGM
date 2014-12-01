@@ -22,7 +22,9 @@ public class ImageProcessing {
         // TODO code application logic here
         //Test des readers and writers
         
-        PGMImage image = null;
+      PGMImage I = new PGMImage(15,15);
+        
+        /* PGMImage image = null;
         try {
             image = Reader.readFromFile("lena.pgm");
         } catch (FileNotFoundException ex) {
@@ -32,8 +34,8 @@ public class ImageProcessing {
         }
         
         
-        //image.fillImage();
-        Writer.writeToFile(image);
+        //image.fillImage();*/
+        Writer.writeToFile(I);
      
     }
 }
