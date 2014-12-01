@@ -4,6 +4,8 @@
  */
 package imageprocessing;
 
+import java.util.HashMap;
+
 /**
  *
  * @author rlebail
@@ -79,37 +81,69 @@ public class PGMImage {
         return I;
     }
         
-    PGMImage delta = new PGMImage(l,h);
     int[] dataArray = I.getPixelArray();
-    int[] resArray = null;
+    int[] resArray = new int[l*h];
     
     for(int i=0; i<pixelArray.length; i++){
             
        resArray[i] = pixelArray[i]-dataArray[i]>0?pixelArray[i]-dataArray[i]:0;
     }
     
+    PGMImage delta = new PGMImage(l,h);
     delta.fillPixelArray(resArray);
     
     return delta;           
     }
     
     public PGMImage seuil(int s){
-       int[] resArray = null;
-       PGMImage delta = new PGMImage(l,h);
+       int[] resArray = new int[l*h];
        
        for(int i=0; i<pixelArray.length; i++){
             resArray[i] = pixelArray[i]>s?255:0;
-            delta.fillPixelArray(resArray);
        } 
        
-       return delta; 
+    PGMImage seuild = new PGMImage(l,h);
+    seuild.fillPixelArray(resArray);
+    
+    return seuild;   
     }
     
     public PGMImage seuil(){
-       return this.seuil(255);
+       return this.seuil(127);
+    }
+    
+    public PGMImage generateHistogram() {
+        
+       
+       int[] freqArrays = new int[255];
+       int maxFreq = 0;
+       
+       for(int i=0; i<pixelArray.length; i++){
+           freqArrays[pixelArray[i]]++;
+           if(freqArrays[pixelArray[i]]>maxFreq)maxFreq=freqArrays[pixelArray[i]];
+       } 
+              
+       int[] histPixelArray = new int[255*maxFreq];
+       
+       for(int i=0; i<255; i++){
+           for(int j=0; j<maxFreq; j++){
+               
+            if(j<freqArrays[i])
+            {histPixelArray[255*i+j]=255;}
+            else
+            {histPixelArray[255*i+j]=0;}
+               
+           }
+       }
+        
+       PGMImage histImage = new PGMImage(255,maxFreq); 
+       histImage.fillPixelArray(histPixelArray);
+       
+       return histImage;        
     }
     
     public void resize(int largeur, int hauteur){
+        
         
     }
 }
