@@ -92,5 +92,20 @@ public class PGMImage {
     
     return delta;           
     }
-                
+    
+    public PGMImage seuil(int s){
+       int[] resArray = null;
+       PGMImage delta = new PGMImage(l,h);
+       
+       for(int i=0; i<pixelArray.length; i++){
+            resArray[i] = pixelArray[i]>s?255:0;
+            delta.fillPixelArray(resArray);
+       } 
+       
+       return delta; 
+    }
+    
+    public PGMImage seuil(){
+       return this.seuil(255);
+    }
 }
