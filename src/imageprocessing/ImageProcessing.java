@@ -15,6 +15,10 @@ public class ImageProcessing {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //Test d'écriture
+        PGMImage image= new PGMImage(512,512);
+        image.generateHistogram();
+        Writer.writeToFile(image);
      
     }
 }
