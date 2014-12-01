@@ -20,6 +20,8 @@ public class Writer {
      * @param image
      */
     public static void writeToFile(PGMImage image) {
+        
+        int compteur=0; //Permet de compter le nombre de caractères insérés.
 
         try {
 
@@ -29,10 +31,12 @@ public class Writer {
             bw.write(Integer.toString(PGMImage.greyScale)+"\n");
          
             for(int i=0;i<(image.getL()*image.getH());i++ ){
-                bw.write(Integer.toString(image.getPixelArray()[i])+" ");
-                if((i+1)%image.getL()==0)
+                bw.write(Integer.toString(image.getPixelArray().get(i))+" ");
+                compteur+= 4;
+                if((i+1)%image.getL()==0 || compteur>70)
                 {
                     bw.newLine();
+                    compteur=0;
                 }
             }   
             bw.close();
