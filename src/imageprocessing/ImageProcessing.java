@@ -17,7 +17,7 @@ public class ImageProcessing {
         // TODO code application logic here
         //Test d'écriture
         PGMImage image= new PGMImage(512,512);
-        image.generateHistogram();
+        image.fillImage();
         Writer.writeToFile(image);
      
     }
