@@ -9,8 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -51,7 +49,7 @@ public class Reader {
             while((ligne = br.readLine())!=null){
                 tokenizer  = new StringTokenizer(ligne," \t");
                 while(tokenizer.hasMoreTokens()){
-                    image.getPixelArray()[i]=Integer.parseInt(tokenizer.nextToken());
+                    image.getPixelArray().add(i,Integer.parseInt(tokenizer.nextToken()));
                     i++;                    
                 }
             }            

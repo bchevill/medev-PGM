@@ -31,7 +31,7 @@ public class Writer {
             bw.write(Integer.toString(PGMImage.greyScale)+"\n");
          
             for(int i=0;i<(image.getL()*image.getH());i++ ){
-                bw.write(Integer.toString(image.getPixelArray()[i])+" ");
+                bw.write(Integer.toString(image.getPixelArray().get(i))+" ");
                 compteur+= 4;
                 if((i+1)%image.getL()==0 || compteur>70)
                 {
