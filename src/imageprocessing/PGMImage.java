@@ -151,21 +151,31 @@ public class PGMImage {
        return histImage;        
     }
     
-    public void resizeH(int hauteur, PGMImage I)
+    public void resizeH(int hauteur)
     { 
-        int deltaH = h-hauteur; 
         
+        int oldHauteur = h;
+        int oldLargeur = l;
+        ArrayList<Integer> oldArray = (ArrayList<Integer>)pixelArray.clone();
+        
+        ArrayList<Integer> newArray = new ArrayList<>();
+        
+        int deltaH = oldHauteur-hauteur;
+
         if(deltaH==0){return;}
         if(deltaH>0){ //réduction
-        int[] delIndicesArray = new int[deltaH];    
+        ArrayList<Integer> delIndicesArray = new ArrayList<>();    
             
         for(int i=0;i<deltaH;i++){
-            delIndicesArray[i]=Math.round((float) i*h/deltaH);
+            delIndicesArray.set(i,Math.round((float) i*h/deltaH));
         }    
         
-        for(int i=0;i<h;i++){
-            
-            
+        for(int i=0;i<oldHauteur*oldLargeur;i++){
+           if(!delIndicesArray.contains(i%oldLargeur)){
+               
+               newArray.add(oldArray.get(i));
+           } 
+        setH(hauteur);
             
         }
             
@@ -177,20 +187,32 @@ public class PGMImage {
             
             
         }
+    
     }
     
-    public void resizeL(int largeur, PGMImage I)
+    public void resizeL(int largeur)
     {
         int deltaL = l-largeur;
     }       
             
-    public PGMImage resize(int largeur, int hauteur){
+    public void resize(int largeur, int hauteur){
     
-    PGMImage I = new PGMImage(largeur, hauteur);
-        
-    resizeH(hauteur,I);
-    resizeL(largeur,I);    
-    
-    return I;
+        resizeH(hauteur);
+        resizeL(largeur);
+                
+    }
+
+    /**
+     * @param l the l to set
+     */
+    public void setL(int l) {
+        this.l = l;
+    }
+
+    /**
+     * @param h the h to set
+     */
+    public void setH(int h) {
+        this.h = h;
     }
 }
