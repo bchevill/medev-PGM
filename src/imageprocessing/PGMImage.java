@@ -104,7 +104,7 @@ public class PGMImage {
        
        for(int i=0; i<pixelArray.size(); i++){
            diffVal =  pixelArray.get(i)>s?255:0;
-           resArray.set(i,diffVal);
+           resArray.add(diffVal);
        } 
        
     PGMImage seuild = new PGMImage(l,h);
