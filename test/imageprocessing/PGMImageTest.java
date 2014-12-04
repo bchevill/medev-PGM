@@ -125,7 +125,7 @@ public class PGMImageTest {
         System.out.println("seuil");
         int s = 100;
         PGMImage instance = new PGMImage(10,10);
-        Writer.writeToFile(instance);
+        Writer.writeToFile(instance, "testSeuil.pgm");
         //ArrayList<int> listblanc = new ArrayList<>();
         //for (int i=0; i<100; i++) {listblanc.add(8);}
         //instance.fillPixelArray(listblanc);
@@ -149,8 +149,8 @@ public class PGMImageTest {
         System.out.println("seuil");
         PGMImage instance = null;
         PGMImage expResult = null;
-        PGMImage result = instance.seuil();
-        assertEquals(expResult, result);
+        //PGMImage result = instance.seuil();
+//        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -173,71 +173,71 @@ public class PGMImageTest {
     /**
      * Test of resizeH method, of class PGMImage.
      */
-    @ Ignore
-    @Test
-    public void testResizeH() {
-        System.out.println("resizeH");
-        int hauteur = 0;
-        PGMImage instance = null;
-        instance.resizeH(hauteur);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of resizeL method, of class PGMImage.
-     */
-    @ Ignore
-    @Test
-    public void testResizeL() {
-        System.out.println("resizeL");
-        int largeur = 0;
-        PGMImage instance = null;
-        instance.resizeL(largeur);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of resize method, of class PGMImage.
-     */
-    @ Ignore
-    @Test
-    public void testResize() {
-        System.out.println("resize");
-        int largeur = 0;
-        int hauteur = 0;
-        PGMImage instance = null;
-        instance.resize(largeur, hauteur);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setL method, of class PGMImage.
-     */
-    @ Ignore
-    @Test
-    public void testSetL() {
-        System.out.println("setL");
-        int l = 0;
-        PGMImage instance = null;
-        instance.setL(l);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setH method, of class PGMImage.
-     */
-    @ Ignore
-    @Test
-    public void testSetH() {
-        System.out.println("setH");
-        int h = 0;
-        PGMImage instance = null;
-        instance.setH(h);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @ Ignore
+//    @Test
+//    public void testResizeH() {
+//        System.out.println("resizeH");
+//        int hauteur = 0;
+//        PGMImage instance = null;
+//        instance.resizeH(hauteur);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of resizeL method, of class PGMImage.
+//     */
+//    @ Ignore
+//    @Test
+//    public void testResizeL() {
+//        System.out.println("resizeL");
+//        int largeur = 0;
+//        PGMImage instance = null;
+//        instance.resizeL(largeur);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of resize method, of class PGMImage.
+//     */
+//    @ Ignore
+//    @Test
+//    public void testResize() {
+//        System.out.println("resize");
+//        int largeur = 0;
+//        int hauteur = 0;
+//        PGMImage instance = null;
+//        instance.resize(largeur, hauteur);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of setL method, of class PGMImage.
+//     */
+//    @ Ignore
+//    @Test
+//    public void testSetL() {
+//        System.out.println("setL");
+//        int l = 0;
+//        PGMImage instance = null;
+//        instance.setL(l);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of setH method, of class PGMImage.
+//     */
+//    @ Ignore
+//    @Test
+//    public void testSetH() {
+//        System.out.println("setH");
+//        int h = 0;
+//        PGMImage instance = null;
+//        instance.setH(h);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 }
