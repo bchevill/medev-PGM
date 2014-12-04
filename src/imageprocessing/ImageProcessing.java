@@ -19,23 +19,6 @@ public class ImageProcessing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        //Test des readers and writers
-        
-      PGMImage I = new PGMImage(15,15);
-        
-        /* PGMImage image = null;
-        try {
-            image = Reader.readFromFile("lena.pgm");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        //image.fillImage();*/
-        Writer.writeToFile(I);
-     
+          
     }
 }
